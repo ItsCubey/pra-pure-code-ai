@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, Code, Rocket, Users } from "lucide-react";
 
-const Hero = () => {
+interface HeroProps {
+  onGetStarted?: () => void;
+}
+
+const Hero = ({ onGetStarted }: HeroProps) => {
   return (
     <section className="relative py-20 md:py-32 overflow-hidden">
       {/* Background Effects */}
@@ -33,6 +37,7 @@ const Hero = () => {
             <Button 
               size="lg" 
               className="bg-gradient-primary hover:shadow-glow transition-all duration-300 text-lg px-8 py-4 group"
+              onClick={onGetStarted}
             >
               Start Building Now
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

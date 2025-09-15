@@ -1,7 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Code2, Zap, Users } from "lucide-react";
+import { authService } from "@/lib/auth";
 
-const Header = () => {
+interface HeaderProps {
+  onGetStarted?: () => void;
+}
+
+const Header = ({ onGetStarted }: HeaderProps) => {
+  const user = authService.getCurrentUser();
+
+  const handleSignOut = async () => {
+    await authService.signOut();
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
@@ -30,12 +41,31 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center space-x-4">
-          <Button variant="ghost" className="hidden md:flex">
-            Sign In
-          </Button>
-          <Button className="bg-gradient-primary hover:shadow-glow transition-all duration-300">
-            Get Started
-          </Button>
+          {user ? (
+            <>
+              <span className="text-sm text-muted-foreground hidden md:inline">
+                {user.displayName || user.email}
+              </span>
+              <Button variant="ghost" onClick={handleSignOut}>
+                Sign Out
+              </Button>
+              <Button asChild className="bg-gradient-primary hover:shadow-glow transition-all duration-300">
+                <a href="/dashboard">Dashboard</a>
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button variant="ghost" className="hidden md:flex" onClick={onGetStarted}>
+                Sign In
+              </Button>
+              <Button 
+                className="bg-gradient-primary hover:shadow-glow transition-all duration-300"
+                onClick={onGetStarted}
+              >
+                Get Started
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </header>

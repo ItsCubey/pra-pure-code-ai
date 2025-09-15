@@ -5,12 +5,16 @@ import AIWorkspace from "@/components/AIWorkspace";
 import Pricing from "@/components/Pricing";
 import Footer from "@/components/Footer";
 
-const Index = () => {
+interface IndexProps {
+  onGetStarted?: () => void;
+}
+
+const Index = ({ onGetStarted }: IndexProps) => {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header onGetStarted={onGetStarted} />
       <main>
-        <Hero />
+        <Hero onGetStarted={onGetStarted} />
         <Features />
         <AIWorkspace />
         <Pricing />
