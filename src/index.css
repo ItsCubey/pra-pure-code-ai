@@ -2,41 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* PRA by Vardaan AI - Dark Theme Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    /* Dark Theme Colors */
+    --background: 0 0% 6%;
+    --foreground: 0 0% 98%;
+    
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+    
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 95%;
+    
+    /* Brand Colors */
+    --primary: 14 100% 57%; /* Vibrant Orange */
+    --primary-foreground: 0 0% 98%;
+    
+    --secondary: 45 100% 51%; /* Bright Yellow */
+    --secondary-foreground: 0 0% 8%;
+    
+    --accent: 0 84% 60%; /* Electric Red */
+    --accent-foreground: 0 0% 98%;
+    
+    /* UI Colors */
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 0 0% 15%;
+    --input: 0 0% 12%;
+    --ring: 14 100% 57%;
+    
+    /* Success & Info */
+    --success: 142 76% 36%;
+    --info: 217 91% 60%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(14 100% 57%), hsl(0 84% 60%));
+    --gradient-secondary: linear-gradient(135deg, hsl(45 100% 51%), hsl(14 100% 57%));
+    --gradient-dark: linear-gradient(135deg, hsl(0 0% 8%), hsl(0 0% 12%));
+    
+    /* Shadows */
+    --shadow-glow: 0 0 20px hsl(14 100% 57% / 0.3);
+    --shadow-accent: 0 8px 32px hsl(0 84% 60% / 0.2);
+    
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -102,4 +116,80 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer components {
+  /* Gradient Utilities */
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .bg-gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+  
+  .bg-gradient-dark {
+    background: var(--gradient-dark);
+  }
+  
+  /* Glow Effects */
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .shadow-accent {
+    box-shadow: var(--shadow-accent);
+  }
+  
+  /* AI Interface Styles */
+  .ai-chat-container {
+    @apply bg-card border border-border rounded-lg;
+  }
+  
+  .code-editor {
+    @apply bg-muted/50 border border-border rounded-lg font-mono;
+  }
+  
+  /* Button Variants */
+  .btn-ai {
+    @apply bg-gradient-primary text-primary-foreground hover:shadow-glow transition-all duration-300;
+  }
+  
+  .btn-secondary {
+    @apply bg-gradient-secondary text-secondary-foreground hover:shadow-accent transition-all duration-300;
+  }
+  
+  .btn-ghost {
+    @apply bg-transparent border border-border hover:bg-muted/50 transition-all duration-200;
+  }
+}
+
+@layer utilities {
+  /* Animation Classes */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 20px hsl(14 100% 57% / 0.3); }
+  to { box-shadow: 0 0 30px hsl(14 100% 57% / 0.6); }
 }
